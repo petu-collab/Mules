@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="munit-test-test-suite.xml" />
+	<munit:test name="munit-test-test-suite-munit-testFlow1Test" doc:id="8a076cd2-d74c-46fe-9231-dfcf98e541d8" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="b0fb3c57-8c33-4b01-9718-d2de8fd0df84" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GET" attributeName="method" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to munit-testFlow1" doc:id="4d7d7a06-38e9-45e6-9af8-9e611eefcb35" name="munit-testFlow1"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="664bc850-3427-4ea8-900a-9374b15737e2" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="munit-test-test-suite-munit-testFlow2Test" doc:id="7e58a758-809e-4778-b3db-5ce8f5f191b9" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to munit-testFlow2" doc:id="e30b5eaf-8eea-4b98-b8d4-808951644a3a" name="munit-testFlow2"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
