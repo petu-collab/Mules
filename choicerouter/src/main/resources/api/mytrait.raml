@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: zy
+traits:
+  xxx:
+    responses:
+      404:
+        body:
+          application/json:
+            example:
+              {"message": "resource not found"}
+      500:
+        body:
+          application/json:
+            example:
+              {"messag": "server failure"}

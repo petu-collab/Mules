@@ -1,0 +1,117 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/2c5aaf25-cee0-4ca0-af50-133d495f51a0/ # 
+title: bankAPI
+documentation:
+  - !include docs/documentation.raml
+uses:
+  eth: !include mytrait.raml 
+types:
+  customer: !include dataType/customer.raml
+  account: !include dataType/account.raml
+  transaction: !include dataType/transaction.raml
+/Customer:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+             type: customer
+             examples:
+              !include examples/Customer.raml
+    is: [eth.xxx] 
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: customer  
+            examples:
+              !include examples/Customer.raml 
+    is: [eth.xxx]       
+  /{customerID}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: customer 
+              examples:
+                !include examples/Customer.raml  
+    is:  [eth.xxx]     
+    patch:
+      responses:
+        204:
+          body:
+            application/json:
+              type: customer
+              examples:
+                !include examples/Customer.raml
+      is: [eth.xxx]
+/account:
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: account
+            examples:
+              !include examples/Account.raml
+    is: [eth.xxx]
+  /accountID:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: account  
+              examples:
+                !include examples/Account.raml      
+    put:
+      responses:
+        201:
+          body:
+            application/json:
+              type: account
+              examples:
+                !include examples/Account.raml
+      is: [eth.xxx]
+    delete:  
+      responses:     
+        400:
+          body:
+            application/json:
+              example:
+                {"message" : " unauthorized user"}
+
+      is: [eth.xxx]
+  /transaction:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: account
+              examples:
+                !include examples/Account.raml
+      is: [eth.xxx]
+/transaction:
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: transaction
+            examples:
+              !include examples/Transaction.raml
+    is: [eth.xxx] 
+  /account:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: transaction  
+              examples:
+                !include examples/Transaction.raml
+      is: [eth.xxx]
+      
